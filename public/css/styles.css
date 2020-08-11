@@ -1,0 +1,56 @@
+table{
+    margin:36px 0px 0px 90px;
+    text-align: center;
+}
+
+.clearfix{
+    float: none;
+    clear: both;
+}
+
+.comment-textarea{
+    width: 300px;
+    margin-left: 240px;
+    margin-bottom:10px;
+}
+
+.bookings_tab{
+    margin: 36px 0px 0px 90px;
+}
+
+#client_warning{
+    display: none;
+    border:2px solid red;
+    color: red;
+    text-align: center;
+    margin: 0px 0px 0px 20px;
+}
+
+.div_paginate{
+    margin:  16px 0px 0px 522px;
+}
+
+.title{
+    display: block;
+    float:left;
+    margin: 12px 0px 0px 500px;
+}
+
+.buttons_info a{
+    width: 68px;
+    height: 35px;
+    margin-bottom:8px;
+    padding: 5px;
+}
+
+.edit_booking textarea{
+    text-align: left;
+    color:green;
+    font-weight: bold;
+}
+
+
+
+.container_avatar{
+    
+}
