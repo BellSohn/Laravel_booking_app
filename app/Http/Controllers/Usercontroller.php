@@ -12,8 +12,7 @@ use App\User;
 
 
 class Usercontroller extends Controller
-{
-    //
+{   
     
         
     public function __construct() {
@@ -22,22 +21,18 @@ class Usercontroller extends Controller
         
         
         public function config(){
-            $user = \Auth::user();
-            
-            
-            
+            $user = \Auth::user();                       
             return view('user.user',array('user'=>$user));
-            //return view('user.user');
+            
         }
         
         
         
-        public function update(Request $request){
-            
+        public function update(Request $request){            
             $user = \Auth::user();
             $user_id = $user->id;
             
-            //validacion
+            //validation
             $validation = $this->validate($request,[
                 'name'=>'required|alpha|max:255',
                 'surname'=>'required|alpha|max:255',
