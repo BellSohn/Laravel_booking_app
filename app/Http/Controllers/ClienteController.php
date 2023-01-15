@@ -11,7 +11,7 @@ use App\Client;
 
 class ClienteController extends Controller
 {
-    //
+    
     public function __construct() {
         
         $this->middleware('auth');
@@ -56,7 +56,7 @@ class ClienteController extends Controller
     
     public function UpdateCliente($id,Request $request){
         
-        //validar el formulario
+        //validate the form
         $validateData = $this->validate($request,[
             'name'=>'required|string',
             'surname'=>'required|string',
@@ -85,21 +85,14 @@ class ClienteController extends Controller
         
     public function AllClientes(){
         
-        $allClientes = Client::orderBy('id','desc')->paginate(3);
-        //var_dump($allClientes);
-        
+        $allClientes = Client::orderBy('id','desc')->paginate(3);      
         return view('cliente.AllClientes',['allClientes'=>$allClientes]);
-    }
-    
-    
-   
-    
-    
+    }   
+        
     public function saveClient(Request $request){
         
-        if($request){
-            //var_dump($request);
-            //validar formulario
+        if($request){           
+            
             $validateDate = $this->validate($request,[
                 'name'=>'required|min:5',
                 'surname'=>'required|min:5',
@@ -108,7 +101,7 @@ class ClienteController extends Controller
                 'email'=>'required'
             ]);
             
-            //creamos objeto de cliente
+            //create the client object
             $newClient = new Client();
             
             $newClient->name = $request->input('name');
