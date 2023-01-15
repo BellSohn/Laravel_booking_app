@@ -17,8 +17,7 @@ class ReservaController extends Controller
 
         
     public function create(){
-        //este controller se usa para cargar el formulario
-        
+        //this controller is used to load the form        
         return view('reserva.create');
     }
     
@@ -45,17 +44,14 @@ class ReservaController extends Controller
     
     public function verReservas(){
         
-        $reservas = Booking::orderBy('id','desc')->paginate(3);
-        
-        
-        
+        $reservas = Booking::orderBy('id','desc')->paginate(3);               
         return view('reserva.verReservas',['reservas'=>$reservas]);
         
         
         
     }
     
-   /*metodo para establecer el formulario de modificación de reserva*/
+   /*method to set the booking modification form*/
         public function editReserva($id){
             
             $reserva = Booking::findOrFail($id);
@@ -71,7 +67,7 @@ class ReservaController extends Controller
       
       public function updateBooking($id,Request $request){
           
-          //validar el formulario
+          //validate the form
           $validate = $this->validate($request,[
               'name'=>'required|string',
               'surname'=>'required|string',
@@ -105,8 +101,7 @@ class ReservaController extends Controller
       public function deleteBooking($id){
           
           $booking = Booking::findOrFail($id);
-          if($booking){
-             // var_dump($booking);
+          if($booking){             
               $booking->delete();
           }
           return redirect()->route('reserva.verReservas')->with(array('message'=>'the booking was deleted'));
@@ -119,10 +114,10 @@ class ReservaController extends Controller
     public function saveBooking(Request $request){
         
         if($request){
-            //var_dump($request);
+            
             $user_id = \Auth::user()->id;
             
-            //validar los datos
+            //validate the data
             $validate = $this->validate($request,[
                 'client_id'=>'required|integer',
                 'name'=>'required|string',
@@ -134,7 +129,7 @@ class ReservaController extends Controller
                 'comments'=>'required|string'
             ]);
             
-            //Crear el objeto y seterarlo
+            //create the object and set it
             
             $newBooking = new Booking();
             
@@ -148,7 +143,7 @@ class ReservaController extends Controller
             $newBooking->date_out = $request->input('date_out');
             $newBooking->comments = $request->input('comments');
             
-            //guardar el objeto en la db
+            //store the object in the db
             $newBooking->save();
             
             return redirect()->route('reserva.create')->with(['message'=>'La reserva se ha guardado con exito']);
