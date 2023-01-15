@@ -13,19 +13,8 @@
 use App\Booking;
 
 
-Route::get('/', function () {
-    
-    /*
-    $bookings = Booking::all();
-    foreach ($bookings as $booking) {
-        echo "id del cliente  :".$booking->clients->id." |  nombre : ".$booking->clients->name.""
-                . " | surname : ".$booking->clients->surname."reserva hecha por: ".$booking->user->name;
-               
+Route::get('/', function () {    
       
-    }
-    die();
-    */
-    
     
     return view('welcome');
     
@@ -37,31 +26,31 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-//Crear formulario reserva
+//create the booking form
 Route::get('/reserva/create','ReservaController@create')->name('reserva.create');
-//crear Booking
+//create booking
 Route::post('/save-booking',array(
     'as' => 'reserva.saveBooking',
     'middleware' => 'auth',
     'uses'=>'ReservaController@saveBooking'
 ));
-//buscar que el id del cliente existe en la db,
+//search that the client id fits the client id in the db
 Route::get('reserva/search/{id}','ReservaController@searchClient')->name('reserva.search');
-//route para ver todas las reservas
+//route to see all the bookings
 Route::get('/all-bookigs',array(
     'as'=>'reserva.verReservas',
     'middleware'=>'auth',
     'uses'=>'ReservaController@verReservas'
 ));
 
-//vista de edicion de reserva
+//view of booking edition
 Route::get('/edit-reserva/{id}',array(
     'as'=>'editReserva',
     'middleware'=>'auth',
     'uses'=>'ReservaController@editReserva',
 ));
 
-//update reserva/booking
+//update booking
 Route::post('/update-booking/{id}',array(
     'as'=>'updateBooking',
     'middleware'=>'auth',
@@ -77,10 +66,10 @@ Route::get('/delete-booking/{id}',array(
 
 
 
-//crear formulario cliente
+//create client form
 Route::get('/cliente/create','ClienteController@create')->name('cliente.create');
 
-//guardar nuevo cliente,esta primera ruta es válida tambien
+//store new client,the above route is also valid
 //Route::post('/cliente/save','ClienteController@saveClient')->name('cliente.create');
 Route::post('/save-client',array(
     'as' => 'saveClient',
@@ -88,7 +77,7 @@ Route::post('/save-client',array(
     'uses' => 'ClienteController@saveClient'
 ));
 
-//ver todos los clientes
+//see all the clients
 //Route::get('/all-clients','ClienteController@AllClientes')->name('cliente.AllClientes');
 Route::get('/all-clients',array(
     'as'=>'cliente.AllClientes',
@@ -96,7 +85,7 @@ Route::get('/all-clients',array(
     'uses'=>'ClienteController@AllClientes'
 ));
 
-//Editamos el cliente.
+//edit the client
 Route::get('/edit-cliente/{id}',array(
     'as'=>'EditCliente',
     'middleware'=>'auth',
@@ -104,14 +93,14 @@ Route::get('/edit-cliente/{id}',array(
 ));
 
 
-//Actualizar el cliente
+//update the client
 Route::post('/update-cliente/{id}',array(
     'as'=>'UpdateCliente',
     'middleware'=>'auth',
     'uses'=>'ClienteController@UpdateCliente'
 ));
 
-//delete/borrar el cliente
+//delete/erase the client
 Route::get('/delete-cliente/{id}',array(
     'as'=>'DeleteCliente',
     'middleware'=>'auth',
